@@ -3,8 +3,8 @@ const app = express()
 const port = 3000
 
 // Rutas
-const entriesApiRoutes = require("./routes/entries.routes")
-const authorsApiRoutes = require("./routes/authors.routes")
+const providersApiRoutes = require("./routes/providers.routes")
+const productsApiRoutes = require("./routes/products.routes")
 
 app.use(express.json()); // Habilito recepción de JSON en servidor
 app.use(express.urlencoded({ extended: true }));
@@ -22,18 +22,16 @@ app.get('/', (req, res) => {
 })
 
 // Rutas
-//API [GET] http://localhost:3000/api/entries
-//API [PUT] http://localhost:3000/api/entries/ + {title,content,date,category}
-//API [DELETE] http://localhost:3000/api/entries/:title
-app.use('/api/entries',entriesApiRoutes);
+//API CRUD http://localhost:3000/api/providers
+app.use('/api/providers',providersApiRoutes);
 
-//API [GET] http://localhost:3000/api/authors
-app.use('/api/authors',authorsApiRoutes);
+//API CRUD http://localhost:3000/api/products
+app.use('/api/products',productsApiRoutes);
 
 
 // Para rutas no existentes
 app.use('*',error404);
 
 app.listen(port, () => {
-  console.log(`listen on: http://localhost:${port}/api/entries`)
+  console.log(`listen on: http://localhost:${port}/api/`)
 })
